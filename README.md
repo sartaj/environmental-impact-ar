@@ -1,3 +1,3 @@
 # waste-reality
 
-Repo exploring making an AR visualization for Municipal Solid Waste (MSW).
+Repo exploring making a calculator with AR visualization for how much trash a user produces (i.e. Municipal Solid Waste (MSW)).
