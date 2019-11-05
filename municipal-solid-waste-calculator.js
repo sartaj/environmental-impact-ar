@@ -2,8 +2,12 @@
   * @returns number 85166 (lbs per year)
  */
 module.exports.getTotalTrashInLbs = () => {
+ // source: https://archive.epa.gov/epawaste/nonhaz/municipal/web/html/
  const mswPerPersonPeryearInLlbs = 2555
+
+ // source: https://frontiergroup.org/reports/fg/trash-america
  const industrialWastePercent = 97
+ 
  const totalMSWImpactInLbs = mswPerPersonPeryearInLlbs * 100 / (100-industrialWastePercent)
  return totalMSWImpactInLbs
 }
@@ -13,8 +17,11 @@ module.exports.getTotalTrashInLbs = () => {
  */
 module.exports.getTotalTrashBags = () => {
  const totalTrashinLbs = getTotalTrashInLbs()
+ 
+ // source: https://westerndisposalservices.com/how-much-does-it-weigh-household-trash/
  const gallonsPerPound = 0.9
  const gallonsPerTrashBag = 10
+
  const totalTrashBags = (totalTrashinLbs * gallonsPerPound) / gallonsPerTrashBag
  return totalTrashBags
 }
