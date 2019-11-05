@@ -1,5 +1,5 @@
 /**
-  * @returns 85,166 trash bags
+  * @returns number 85166 (lbs per year)
  */
 module.exports.getTotalTrashInLbs = () => {
  const mswPerPersonPeryearInLlbs = 2555
@@ -9,7 +9,7 @@ module.exports.getTotalTrashInLbs = () => {
 }
 
 /**
-  * @returns 7,664 trash bags
+  * @returns number 7664 (trash bags)
  */
 module.exports.getTotalTrashBags = () => {
  const totalTrashinLbs = getTotalTrashInLbs()
