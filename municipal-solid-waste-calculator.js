@@ -3,12 +3,13 @@
  */
 module.exports.getTotalTrashInLbs = () => {
  // source: https://archive.epa.gov/epawaste/nonhaz/municipal/web/html/
- const mswPerPersonPeryearInLlbs = 2555
+ const personalWasteTotalPerYear = 2555
 
  // source: https://frontiergroup.org/reports/fg/trash-america
  const industrialWastePercent = 97
  
- const totalMSWImpactInLbs = mswPerPersonPeryearInLlbs * 100 / (100-industrialWastePercent)
+ // personalWasteTotal/x = personalWastePercent/100
+ const totalMSWImpactInLbs = personalWasteTotalPerYear * 100 / (100-industrialWastePercent)
  return totalMSWImpactInLbs
 }
 
