@@ -21,6 +21,7 @@ import {
   ViroVRSceneNavigator,
   ViroARSceneNavigator
 } from 'react-viro';
+import { bold } from 'ansi-colors';
 
 /*
  TODO: Insert your API key below
@@ -30,8 +31,7 @@ var sharedProps = {
 }
 
 // Sets the default scene you want for AR and VR
-var InitialARScene = require('./js/HelloWorldSceneAR');
-var InitialVRScene = require('./js/HelloWorldScene');
+var InitialARScene = require('./js/WasteRealitySceneAR');
 
 var UNSET = "UNSET";
 var VR_NAVIGATOR_TYPE = "VR";
@@ -51,7 +51,6 @@ export default class ViroSample extends Component {
     }
     this._getExperienceSelector = this._getExperienceSelector.bind(this);
     this._getARNavigator = this._getARNavigator.bind(this);
-    this._getVRNavigator = this._getVRNavigator.bind(this);
     this._getExperienceButtonOnPress = this._getExperienceButtonOnPress.bind(this);
     this._exitViro = this._exitViro.bind(this);
   }
@@ -61,8 +60,6 @@ export default class ViroSample extends Component {
   render() {
     if (this.state.navigatorType == UNSET) {
       return this._getExperienceSelector();
-    } else if (this.state.navigatorType == VR_NAVIGATOR_TYPE) {
-      return this._getVRNavigator();
     } else if (this.state.navigatorType == AR_NAVIGATOR_TYPE) {
       return this._getARNavigator();
     }
@@ -75,21 +72,14 @@ export default class ViroSample extends Component {
         <View style={localStyles.inner} >
 
           <Text style={localStyles.titleText}>
-            Choose your desired experience:
+            WASTE REALITY
           </Text>
 
           <TouchableHighlight style={localStyles.buttons}
             onPress={this._getExperienceButtonOnPress(AR_NAVIGATOR_TYPE)}
             underlayColor={'#68a0ff'} >
 
-            <Text style={localStyles.buttonText}>AR</Text>
-          </TouchableHighlight>
-
-          <TouchableHighlight style={localStyles.buttons}
-            onPress={this._getExperienceButtonOnPress(VR_NAVIGATOR_TYPE)}
-            underlayColor={'#68a0ff'} >
-
-            <Text style={localStyles.buttonText}>VR</Text>
+            <Text style={localStyles.buttonText}>Run</Text>
           </TouchableHighlight>
         </View>
       </View>
@@ -104,14 +94,6 @@ export default class ViroSample extends Component {
     );
   }
   
-  // Returns the ViroSceneNavigator which will start the VR experience
-  _getVRNavigator() {
-    return (
-      <ViroVRSceneNavigator {...this.state.sharedProps}
-        initialScene={{scene: InitialVRScene}} onExitViro={this._exitViro}/>
-    );
-  }
-
   // This function returns an anonymous/lambda function to be used
   // by the experience selector buttons
   _getExperienceButtonOnPress(navigatorType) {
@@ -149,7 +131,7 @@ var localStyles = StyleSheet.create({
   },
   titleText: {
     paddingTop: 30,
-    paddingBottom: 20,
+    paddingBottom: 30,
     color:'#fff',
     textAlign:'center',
     fontSize : 25
@@ -157,7 +139,8 @@ var localStyles = StyleSheet.create({
   buttonText: {
     color:'#fff',
     textAlign:'center',
-    fontSize : 20
+    fontSize : 25,
+    fontWeight: 'bold',
   },
   buttons : {
     height: 80,
@@ -171,18 +154,6 @@ var localStyles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#fff',
   },
-  exitButton : {
-    height: 50,
-    width: 100,
-    paddingTop:10,
-    paddingBottom:10,
-    marginTop: 10,
-    marginBottom: 10,
-    backgroundColor:'#68a0cf',
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: '#fff',
-  }
 });
 
 module.exports = ViroSample

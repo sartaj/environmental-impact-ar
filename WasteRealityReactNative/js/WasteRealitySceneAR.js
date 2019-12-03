@@ -2,15 +2,14 @@
 
 import React, { Component } from 'react';
 
-import {StyleSheet} from 'react-native';
-
 import {
   ViroARScene,
-  ViroText,
   ViroConstants,
+  Viro3DObject,
+  ViroAmbientLight
 } from 'react-viro';
 
-export default class HelloWorldSceneAR extends Component {
+export default class WasteRealitySceneAR extends Component {
 
   constructor() {
     super();
@@ -27,7 +26,15 @@ export default class HelloWorldSceneAR extends Component {
   render() {
     return (
       <ViroARScene onTrackingUpdated={this._onInitialized} >
-        <ViroText text={this.state.text} scale={[.5, .5, .5]} position={[0, 0, -1]} style={styles.helloWorldTextStyle} />
+        {/* show garbage image */}
+        <ViroAmbientLight color="#ffffff" />
+        <Viro3DObject source={require('./res/garbage_bag_obj.obj')}
+          resources={[require('./res/garbage_bag_obj.mtl'),
+                  require('./res/bag.jpg')]}
+                  position={[0.0, 0.0, -10]}
+                  scale={[0.1, 0.1, 0.1]}
+                  type="OBJ"
+                  />
       </ViroARScene>
     );
   }
@@ -35,7 +42,7 @@ export default class HelloWorldSceneAR extends Component {
   _onInitialized(state, reason) {
     if (state == ViroConstants.TRACKING_NORMAL) {
       this.setState({
-        text : "Hello World!"
+        text : "Waste Reality"
       });
     } else if (state == ViroConstants.TRACKING_NONE) {
       // Handle loss of tracking
@@ -43,14 +50,4 @@ export default class HelloWorldSceneAR extends Component {
   }
 }
 
-var styles = StyleSheet.create({
-  helloWorldTextStyle: {
-    fontFamily: 'Arial',
-    fontSize: 30,
-    color: '#ffffff',
-    textAlignVertical: 'center',
-    textAlign: 'center',  
-  },
-});
-
-module.exports = HelloWorldSceneAR;
+module.exports = WasteRealitySceneAR;
