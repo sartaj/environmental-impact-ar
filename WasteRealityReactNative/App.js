@@ -20,8 +20,6 @@ import {
   ViroARSceneNavigator,
 } from 'react-viro';
 
-var createReactClass = require('create-react-class');
-
 /*
  * TODO: Add your API key below!!
  */
@@ -32,19 +30,20 @@ var arScenes = {
   'ARPhysicsAnchor': require('./js/ARPhysicsAnchor/ARPhysicsAnchor.js'),
 }
 
-var ViroCodeSamplesSceneNavigator = createReactClass({
-  render: function() {
+export default class ViroCodeSamplesSceneNavigator extends Component {
+  constructor() {
+    super();
+  }
+
+  render()  {
     return (
       <ViroARSceneNavigator
         initialScene={{
-          scene: arScenes['ARPhysicsAnchor'],
+          scene: arScenes['AR3DRender'],
         }}
         apiKey={apiKey} />
     );
   }
-});
-
-// Uncomment the below line to use the ARDrivingCar Demo. Don't forget to set the apiKey variable in ARDrivingCar.js
-// ViroCodeSamplesSceneNavigator = require('./js/ARDrivingCarDemo/ARDrivingCar');
+}
 
 module.exports = ViroCodeSamplesSceneNavigator;
